@@ -1,0 +1,230 @@
+@import "tailwindcss" source(none);
+@import "tw-animate-css";
+@import "katex/dist/katex.min.css";
+@source "../src";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-serif: "Newsreader", Georgia, serif;
+  --radius-sm: max(0px, calc(var(--radius) - 4px));
+  --radius-md: max(0px, calc(var(--radius) - 2px));
+  --radius-lg: var(--radius);
+  --radius-xl: var(--radius);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-source: var(--source);
+  --color-derived: var(--derived);
+  --color-ai: var(--ai);
+  --color-verify: var(--verify);
+  --color-success: var(--success);
+  --color-grid: var(--grid);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+}
+
+:root {
+  --radius: 0rem;
+  /* Illinois identity: navy structure + orange action, neutral workspace. */
+  --background: oklch(0.97 0.002 255);
+  --foreground: oklch(0.20 0.02 260);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.66 0.21 47);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.93 0.01 255);
+  --secondary-foreground: oklch(0.24 0.04 260);
+  --muted: oklch(0.94 0.005 255);
+  --muted-foreground: oklch(0.42 0.02 260);
+  --accent: oklch(0.93 0.05 60);
+  --accent-foreground: oklch(0.26 0.06 260);
+  --destructive: oklch(0.56 0.18 28);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.26 0.045 260);
+  --input: var(--border);
+  --ring: oklch(0.66 0.21 47);
+  --source: oklch(0.42 0.09 255);
+  --derived: oklch(0.55 0.08 250);
+  --ai: oklch(0.50 0.015 255);
+  --verify: oklch(0.60 0.17 45);
+  --success: var(--source);
+  --grid: oklch(0.90 0.005 255);
+  --chart-1: oklch(0.66 0.21 47);
+  --chart-2: oklch(0.42 0.09 255);
+  --chart-3: oklch(0.55 0.08 250);
+  --chart-4: oklch(0.60 0.17 45);
+  --chart-5: oklch(0.43 0.01 255);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@utility bg-graph {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+@utility equation {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+}
+
+:root {
+  --chrome: oklch(0.26 0.06 260);
+  --chrome-foreground: oklch(0.98 0 0);
+  --chrome-muted: oklch(0.78 0.03 255);
+  --panel-shadow: 4px 4px 0 var(--border);
+}
+@theme inline {
+  --shadow-brutal: 3px 3px 0 var(--border);
+  --color-chrome: var(--chrome);
+  --color-chrome-foreground: var(--chrome-foreground);
+  --color-chrome-muted: var(--chrome-muted);
+}
+body { letter-spacing: 0; }
+.technical-panel { border: 2px solid var(--border); background: var(--card); box-shadow: none; }
+.technical-panel > .panel-heading { border-bottom: 2px solid var(--border); background: var(--muted); margin: -16px -16px 16px; padding: 10px 16px; }
+/* KaTeX isolation: app typography must never distort math metrics. inline-block
+   guarantees the full glyph height is reserved in the line box in every engine. */
+.katex { display: inline-block; line-height: normal; letter-spacing: normal; white-space: normal; overflow-wrap: normal; word-break: normal; text-transform: none; }
+.math-block { display: block; width: 100%; min-width: 0; overflow-x: auto; padding: 14px 4px; font-size: 1.05rem; line-height: normal; }
+.math-block .katex-display { margin: 0; }
+.math-inline { font-size: 1em; }
+.math-inline .katex { font-size: 1.05em; }
+.graph-canvas { background-color: var(--card); }
+.graph-node:focus { outline: none; }
+.graph-node:focus-visible rect, .graph-node:hover rect { stroke: var(--primary); stroke-width: 2; }
+@media (prefers-reduced-motion: reduce) { .animate-pulse, .animate-spin { animation: none; } }
+
+.note-markdown > * + * { margin-top: 0.65rem; }
+.note-markdown h1, .note-markdown h2, .note-markdown h3 { font-size: 1rem; font-weight: 600; }
+.note-markdown ul, .note-markdown ol { padding-left: 1.25rem; list-style: revert; }
+.note-markdown pre { max-width: 100%; overflow-x: auto; padding: 0.6rem; background: var(--muted); }
+.note-markdown blockquote { padding-left: 0.75rem; border-left: 2px solid var(--border); color: var(--muted-foreground); }
+.note-markdown p, .note-markdown li { line-height: 1.8; }
+.note-markdown .katex-display { overflow-x: auto; padding: 0.75rem 0.25rem; }
+
+:root { color-scheme: light; }
+:root[data-display-mode="dark"], :root[data-display-mode="night"] {
+  color-scheme: dark;
+  --background: oklch(0.155 0.008 260);
+  --foreground: oklch(0.94 0.005 255);
+  --card: oklch(0.205 0.012 260);
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.235 0.014 260);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.70 0.19 50);
+  --primary-foreground: oklch(0.17 0.03 50);
+  --secondary: oklch(0.285 0.015 260);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.265 0.014 260);
+  --muted-foreground: oklch(0.74 0.02 255);
+  --accent: oklch(0.32 0.05 55);
+  --accent-foreground: oklch(0.85 0.10 65);
+  --destructive: oklch(0.73 0.16 28);
+  --destructive-foreground: oklch(0.18 0.01 28);
+  --border: oklch(0.62 0.02 255);
+  --input: var(--border);
+  --ring: var(--primary);
+  --source: oklch(0.72 0.10 245);
+  --derived: oklch(0.76 0.08 240);
+  --ai: oklch(0.72 0.02 255);
+  --verify: oklch(0.74 0.15 55);
+  --success: var(--source);
+  --grid: oklch(0.30 0.012 260);
+  --chart-1: var(--primary);
+  --chart-2: var(--source);
+  --chart-3: var(--ai);
+  --chart-4: var(--verify);
+  --chart-5: var(--muted-foreground);
+  --chrome: oklch(0.19 0.035 260);
+  --chrome-foreground: var(--foreground);
+  --chrome-muted: var(--muted-foreground);
+}
+
+:root[data-display-mode="night"] {
+  --background: oklch(0.205 0.014 75);
+  --foreground: oklch(0.87 0.035 85);
+  --card: oklch(0.25 0.017 75);
+  --popover: oklch(0.28 0.018 75);
+  --primary: oklch(0.74 0.14 60);
+  --primary-foreground: oklch(0.20 0.02 75);
+  --secondary: oklch(0.30 0.02 75);
+  --muted: oklch(0.29 0.018 75);
+  --muted-foreground: oklch(0.71 0.028 85);
+  --accent: oklch(0.34 0.035 70);
+  --accent-foreground: oklch(0.86 0.07 75);
+  --border: oklch(0.61 0.035 85);
+  --grid: oklch(0.32 0.018 75);
+  --source: oklch(0.72 0.07 225);
+  --derived: oklch(0.74 0.055 215);
+  --ai: oklch(0.72 0.02 85);
+  --verify: oklch(0.72 0.12 55);
+  --chrome: oklch(0.19 0.02 90);
+}
+
+/* Shared brutalist presentation: preserve workflows, change their visual skin. */
+h1, h2, h3 { letter-spacing: 0; }
+main > div:first-child h1 { font-size: 2rem; font-weight: 700; line-height: 1.15; }
+.eyebrow { font-weight: 600; }
+.panel-heading .eyebrow { color: var(--foreground); }
+main > div:first-child:has(h1) { border-bottom: 3px solid var(--border); padding-bottom: 20px; margin-bottom: 24px; }
+main :is(input:not([type="checkbox"]):not([type="radio"]), textarea, select) { border-width: 2px; border-radius: 0; box-shadow: none; }
+main textarea { background: var(--background); line-height: 1.65; }
+main :is(input, textarea, select):focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; }
+:where(main, [role="dialog"], [data-radix-popper-content-wrapper]) :is(.rounded, .rounded-sm, .rounded-md, .rounded-lg, .rounded-xl) { border-radius: 0; }
+main summary { font-family: var(--font-mono); font-weight: 500; color: var(--foreground); line-height: 1.6; }
+main details > summary { padding-block: 4px; }
+main details[open] > summary { color: var(--foreground); text-decoration: underline; text-underline-offset: 4px; }
+.nexus-button { letter-spacing: 0; border-radius: 0; }
+.nexus-button:active:not(:disabled) { translate: 2px 2px; box-shadow: none; }
+.workspace-header .nexus-button { font-family: var(--font-mono); }
+.graph-node rect { rx: 0; ry: 0; stroke-width: 2; }
+.graph-canvas { border-radius: 0; }
+@media (max-width: 640px) {
+  main > div:first-child h1 { font-size: 1.75rem; }
+  .workspace-header nav { order: 3; width: 100%; }
+  .workspace-header nav a { flex: 1; text-align: center; padding-inline: 6px; }
+}
